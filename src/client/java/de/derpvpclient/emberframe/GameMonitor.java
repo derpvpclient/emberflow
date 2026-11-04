@@ -1,31 +1,26 @@
 package de.derpvpclient.emberframe;
 
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import org.lwjgl.sdl.SDLStdinc;
-import org.lwjgl.sdl.SDLVideo;
+import org.lwjgl.PointerBuffer;
+import org.lwjgl.glfw.GLFW;
 
 /** Picks the display for the game window. 1 is the Windows main display, 2 the first other one, and so on. */
 public final class GameMonitor {
 	private GameMonitor() {
 	}
 
-	public static int pick() {
+	public static long pick() {
 		EmberframeConfig.load();
-		int primary = SDLVideo.SDL_GetPrimaryDisplay();
-		List<Integer> others = new ArrayList<>();
-		IntBuffer displays = SDLVideo.SDL_GetDisplays();
+		long primary = GLFW.glfwGetPrimaryMonitor();
+		List<Long> others = new ArrayList<>();
+		PointerBuffer monitors = GLFW.glfwGetMonitors();
 
-		if (displays != null) {
-			try {
-				for (int i = displays.position(); i < displays.limit(); i++) {
-					if (displays.get(i) != primary) {
-						others.add(displays.get(i));
-					}
+		if (monitors != null) {
+			for (int i = monitors.position(); i < monitors.limit(); i++) {
+				if (monitors.get(i) != primary) {
+					others.add(monitors.get(i));
 				}
-			} finally {
-				SDLStdinc.SDL_free(displays);
 			}
 		}
 

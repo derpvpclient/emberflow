@@ -2,7 +2,8 @@ package de.derpvpclient.emberframe.mixin;
 
 import com.mojang.blaze3d.platform.Window;
 import de.derpvpclient.emberframe.GameMonitor;
-import org.lwjgl.sdl.SDLVideo;
+import org.lwjgl.glfw.GLFW;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,25 +20,23 @@ public class WindowMixin {
 	private int y;
 
 	@Shadow
-	public long handle() {
-		throw new AssertionError();
-	}
+	@Final
+	private long handle;
 
 	@Redirect(
-		method = "<init>(Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;ZLjava/lang/String;Lcom/mojang/blaze3d/platform/MonitorManager;Lcom/mojang/renderpearl/api/device/GpuBackend;I)V",
-		at = @At(value = "INVOKE", target = "Lorg/lwjgl/sdl/SDLVideo;SDL_GetPrimaryDisplay()I")
+		method = "<init>(Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;ZLjava/lang/String;Lcom/mojang/blaze3d/platform/MonitorManager;Lcom/mojang/blaze3d/systems/GpuBackend;)V",
+		at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwGetPrimaryMonitor()J")
 	)
-	private int emberframe$useGameMonitor() {
+	private long emberframe$useGameMonitor() {
 		return GameMonitor.pick();
 	}
 
 	// Fullscreen goes to whichever display holds the window, so it has to be there before setMode.
 	@Inject(
-		method = "<init>(Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;ZLjava/lang/String;Lcom/mojang/blaze3d/platform/MonitorManager;Lcom/mojang/renderpearl/api/device/GpuBackend;I)V",
+		method = "<init>(Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;ZLjava/lang/String;Lcom/mojang/blaze3d/platform/MonitorManager;Lcom/mojang/blaze3d/systems/GpuBackend;)V",
 		at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/platform/Window;setMode()V")
 	)
 	private void emberframe$moveToGameMonitor(CallbackInfo ci) {
-		SDLVideo.SDL_SetWindowPosition(this.handle(), this.x, this.y);
-		SDLVideo.SDL_SyncWindow(this.handle());
+		GLFW.glfwSetWindowPos(this.handle, this.x, this.y);
 	}
 }

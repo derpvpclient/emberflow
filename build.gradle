@@ -30,7 +30,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	compileOnly files("libs/modmenu-21.0.0.jar", "libs/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar", "libs/vitrail-0.13.0-beta+mc26.3.jar", "libs/sodium-fabric-0.9.3-beta.1+mc26.3.jar")
+	compileOnly files("libs/modmenu-20.0.3.jar", "libs/yet_another_config_lib_v3-3.9.7+26.2-fabric.jar", "libs/vitrail-0.13.0-beta+mc26.2.jar", "libs/sodium-fabric-0.9.2+mc26.2.jar")
 }
 
 processResources {

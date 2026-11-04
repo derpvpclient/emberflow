@@ -1,7 +1,7 @@
 package de.derpvpclient.emberframe;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.renderpearl.api.device.GpuDevice;
+import com.mojang.blaze3d.systems.GpuDevice;
 import java.util.Locale;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.ChatFormatting;
