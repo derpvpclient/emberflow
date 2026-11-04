@@ -1,0 +1,18 @@
+{
+	"required": true,
+	"package": "de.derpvpclient.emberframe.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"EntityRenderDispatcherMixin",
+		"FramerateLimitTrackerMixin",
+		"LevelExtractorMixin",
+		"MinecraftMixin",
+		"WindowMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

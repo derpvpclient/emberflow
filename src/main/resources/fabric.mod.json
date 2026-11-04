@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "emberframe",
+	"version": "${version}",
+	"name": "Emberframe",
+	"description": "Optimizes Minecraft with Vitrail on Vulkan: faster mobs and mob shadows, without changing the image.",
+	"authors": [
+		"derpvpclient"
+	],
+	"license": "MIT",
+	"icon": "assets/emberframe/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"de.derpvpclient.emberframe.EmberframeClient"
+		],
+		"modmenu": [
+			"de.derpvpclient.emberframe.EmberframeModMenu"
+		],
+		"sodium:config_api_user": [
+			"de.derpvpclient.emberframe.EmberframeSodiumPage"
+		]
+	},
+	"mixins": [
+		{
+			"config": "emberframe.vitrail.mixins.json",
+			"environment": "client"
+		},
+		{
+			"config": "emberframe.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"recommends": {
+		"modmenu": "*",
+		"yet_another_config_lib_v3": "*"
+	}
+}
