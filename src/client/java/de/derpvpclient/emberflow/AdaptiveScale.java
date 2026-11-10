@@ -30,6 +30,7 @@ public final class AdaptiveScale {
 	private static final MethodHandle REFLEX_SCHEDULER;
 	private static final MethodHandle REFLEX_GPU_TIME;
 
+	private static boolean failed;
 	private static int scale = -1;
 	private static int frames;
 	private static long windowStart;
@@ -80,7 +81,15 @@ public final class AdaptiveScale {
 	}
 
 	public static void onFrame(Minecraft minecraft) {
-		if (WANTED == null || !EmberflowConfig.adaptiveScale) {
+		if (WANTED == null || failed) {
+			return;
+		}
+
+		if (!EmberflowConfig.adaptiveScale) {
+			if (scale >= 0) {
+				release();
+			}
+
 			return;
 		}
 
@@ -104,8 +113,27 @@ public final class AdaptiveScale {
 		try {
 			update(fps, now);
 		} catch (Throwable t) {
-			EmberflowClient.LOGGER.error("Adaptive scale failed, turning it off", t);
-			EmberflowConfig.adaptiveScale = false;
+			// Only for this session: the saved setting stays what the player chose.
+			EmberflowClient.LOGGER.error("Adaptive scale failed, leaving it alone until the next start", t);
+			failed = true;
+		}
+	}
+
+	/** Switched off: hands the scale back, otherwise the last lowered one would stay until the next pack reload. */
+	private static void release() {
+		scale = -1;
+		frames = 0;
+		windowStart = 0L;
+		cooldownUntil = 0L;
+		slowWindows = 0;
+		fastWindows = 0;
+
+		try {
+			int ceiling = (int) CEILING.invokeExact();
+			WANTED.invokeExact(ceiling);
+		} catch (Throwable t) {
+			EmberflowClient.LOGGER.error("Could not hand the render scale back to Vitrail", t);
+			failed = true;
 		}
 	}
 

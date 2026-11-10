@@ -24,6 +24,14 @@ public final class EntityStateCache {
 		capturing = EmberflowConfig.reuseEntityStates;
 	}
 
+	/** Outside a world nothing is drawn, so the entities of the last one are let go. */
+	public static void forget() {
+		if (!STATES.isEmpty() || !PARTIAL_TICKS.isEmpty()) {
+			STATES.clear();
+			PARTIAL_TICKS.clear();
+		}
+	}
+
 	public static void end() {
 		capturing = false;
 	}
