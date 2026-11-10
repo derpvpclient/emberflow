@@ -37,6 +37,15 @@ final class BackendCheck {
 		}
 		if (backend.toLowerCase(Locale.ROOT).contains("vulkan")) {
 			asked = told = true;
+			if (EmberflowConfig.keepBackend) {
+				// Back on Vulkan: should the renderer change again later, the question may come once more.
+				EmberflowConfig.keepBackend = false;
+				EmberflowConfig.save();
+			}
+			return;
+		}
+		if (EmberflowConfig.keepBackend) {
+			asked = told = true;
 			return;
 		}
 
@@ -48,6 +57,8 @@ final class BackendCheck {
 					if (switchNow) {
 						switchToVulkan(minecraft);
 					} else {
+						EmberflowConfig.keepBackend = true;
+						EmberflowConfig.save();
 						minecraft.gui.setScreen(title);
 					}
 				},

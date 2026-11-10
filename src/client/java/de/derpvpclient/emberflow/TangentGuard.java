@@ -20,7 +20,7 @@ public final class TangentGuard {
 	private TangentGuard() {
 	}
 
-	public static void onProgram(int programLoad, String path, Map<String, String> inputs) {
+	public static synchronized void onProgram(int programLoad, String path, Map<String, String> inputs) {
 		if (programLoad != load) {
 			tangentInWorld = false;
 			tangentInShadow = false;
