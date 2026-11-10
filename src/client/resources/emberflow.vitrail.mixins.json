@@ -1,0 +1,13 @@
+{
+	"required": false,
+	"package": "de.derpvpclient.emberflow.mixin.vitrail",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"EntityMeshSerializerMixin",
+		"EntityProgramMixin",
+		"ShadowGeometryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}
