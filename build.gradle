@@ -15,7 +15,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"emberframe" {
+		"emberflow" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

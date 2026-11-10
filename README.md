@@ -1,9 +1,9 @@
-# Emberframe
+# Emberflow
 
 Optimizes Minecraft 26.3 (Fabric) with Vitrail on Vulkan: faster mobs and mob shadows, without changing the image.
 
-- Download: [Modrinth](https://modrinth.com/mod/emberframe)
-- Settings: Video Settings → Emberframe, or Mod Menu
+- Download: [Modrinth](https://modrinth.com/mod/emberflow)
+- Settings: Video Settings → Emberflow, or Mod Menu
 
 ## Building
 
