@@ -23,11 +23,11 @@ public class ShadowGeometryMixin {
 
 	@Inject(method = "draw", at = @At("HEAD"))
 	private static void emberflow$enterDraw(CallbackInfo ci) {
-		ShadowPass.active = true;
+		ShadowPass.enterDraw();
 	}
 
 	@Inject(method = "draw", at = @At("RETURN"))
 	private static void emberflow$leaveDraw(CallbackInfo ci) {
-		ShadowPass.active = false;
+		ShadowPass.leaveDraw();
 	}
 }

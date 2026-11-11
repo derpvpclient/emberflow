@@ -1,0 +1,11 @@
+{
+	"required": false,
+	"package": "de.derpvpclient.emberflow.mixin.sodium",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"VertexSerializerRegistryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}
