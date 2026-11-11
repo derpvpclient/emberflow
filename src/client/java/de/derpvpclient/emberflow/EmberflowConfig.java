@@ -16,6 +16,7 @@ public final class EmberflowConfig {
 	public static int adaptiveMinScale = 70;
 	public static boolean fastEntityShadows = true;
 	public static boolean reuseEntityStates = true;
+	public static boolean fastVertexLookup = true;
 	/** The player chose to stay on a renderer that is not Vulkan, so the question is not asked again. */
 	public static boolean keepBackend = false;
 
@@ -47,6 +48,7 @@ public final class EmberflowConfig {
 		adaptiveMinScale = Math.clamp(parseInt(properties, "adaptiveMinScale", adaptiveMinScale), 25, 100);
 		fastEntityShadows = Boolean.parseBoolean(properties.getProperty("fastEntityShadows", String.valueOf(fastEntityShadows)));
 		reuseEntityStates = Boolean.parseBoolean(properties.getProperty("reuseEntityStates", String.valueOf(reuseEntityStates)));
+		fastVertexLookup = Boolean.parseBoolean(properties.getProperty("fastVertexLookup", String.valueOf(fastVertexLookup)));
 		keepBackend = Boolean.parseBoolean(properties.getProperty("keepBackend", String.valueOf(keepBackend)));
 
 		save();
@@ -62,6 +64,7 @@ public final class EmberflowConfig {
 		properties.setProperty("adaptiveMinScale", String.valueOf(adaptiveMinScale));
 		properties.setProperty("fastEntityShadows", String.valueOf(fastEntityShadows));
 		properties.setProperty("reuseEntityStates", String.valueOf(reuseEntityStates));
+		properties.setProperty("fastVertexLookup", String.valueOf(fastVertexLookup));
 		properties.setProperty("keepBackend", String.valueOf(keepBackend));
 
 		try (Writer writer = Files.newBufferedWriter(file)) {

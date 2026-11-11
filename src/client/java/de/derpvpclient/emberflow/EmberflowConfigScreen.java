@@ -34,6 +34,8 @@ public final class EmberflowConfigScreen {
 					true, () -> EmberflowConfig.fastEntityShadows, value -> EmberflowConfig.fastEntityShadows = value))
 				.option(toggle("reuse_entity_states", "reuse_entity_states",
 					true, () -> EmberflowConfig.reuseEntityStates, value -> EmberflowConfig.reuseEntityStates = value))
+				.option(toggle("fast_vertex_lookup", "fast_vertex_lookup",
+					true, () -> EmberflowConfig.fastVertexLookup, value -> EmberflowConfig.fastVertexLookup = value))
 				.option(slider("pause_menu_fps", "pause_menu_fps", 0, 240, 10,
 					0, () -> EmberflowConfig.pauseMenuFpsCap, value -> EmberflowConfig.pauseMenuFpsCap = value))
 				.build())

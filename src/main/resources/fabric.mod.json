@@ -23,6 +23,10 @@
 	},
 	"mixins": [
 		{
+			"config": "emberflow.sodium.mixins.json",
+			"environment": "client"
+		},
+		{
 			"config": "emberflow.vitrail.mixins.json",
 			"environment": "client"
 		},

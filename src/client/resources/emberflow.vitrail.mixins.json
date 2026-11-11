@@ -3,6 +3,7 @@
 	"package": "de.derpvpclient.emberflow.mixin.vitrail",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
+		"BufferBuilderFillMixin",
 		"EntityMeshSerializerMixin",
 		"EntityProgramMixin",
 		"ShadowGeometryMixin"
