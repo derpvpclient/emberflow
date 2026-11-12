@@ -1,11 +1,12 @@
 {
 	"modmenu.summaryTranslation.emberflow": "More FPS with shaders on Vulkan, especially with lots of mobs.",
-	"modmenu.descriptionTranslation.emberflow": "Optimizes Minecraft with Vitrail on Vulkan: faster mobs and mob shadows, without changing the image.",
+	"modmenu.descriptionTranslation.emberflow": "More FPS with shaders on Vulkan.\n\n\u00a76\u2726 \u00a7fFaster mobs\u00a77, only the data the shader pack really reads\n\u00a7e\u2600 \u00a7fFaster mob shadows\u00a77, each mob is prepared once per frame\n\u00a7a\u26a1 \u00a7fDynamic resolution\u00a77, holds your target FPS with Vitrail\n\u00a7b\u2699 \u00a7fEverything adjustable\u00a77 in the video settings\n\n\u00a78Made for Minecraft's Vulkan renderer and Vitrail. The image stays the same.",
 	"emberflow.notice.not_vulkan": "The game is running on %s, not Vulkan. Emberflow only speeds up the Vulkan renderer and does nothing here. Switch to Vulkan in the video settings and restart Minecraft.",
 	"emberflow.notice.switch_question": "Emberflow cannot run on %s, it only speeds up the Vulkan renderer. Would you like to switch to Vulkan?
 This closes the game, just start it again afterwards.",
 	"emberflow.notice.switch": "Switch to Vulkan",
 	"emberflow.notice.keep": "Stay on %s",
+	"emberflow.update.message": "v%s on Modrinth and CurseForge",
 	"emberflow.page.settings": "Settings",
 	"emberflow.group.performance": "Performance",
 	"emberflow.group.adaptive_scale": "Dynamic Resolution",

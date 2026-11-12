@@ -8,6 +8,11 @@
 		"derpvpclient"
 	],
 	"license": "MIT",
+	"contact": {
+		"homepage": "https://modrinth.com/mod/emberflow",
+		"issues": "https://github.com/derpvpclient/emberflow/issues",
+		"sources": "https://github.com/derpvpclient/emberflow"
+	},
 	"icon": "assets/emberflow/icon.png",
 	"environment": "client",
 	"entrypoints": {
@@ -44,5 +49,13 @@
 	"recommends": {
 		"modmenu": "*",
 		"yet_another_config_lib_v3": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/emberflow",
+				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/emberflow"
+			}
+		}
 	}
 }

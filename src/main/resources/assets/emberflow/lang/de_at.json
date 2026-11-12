@@ -1,11 +1,12 @@
 {
 	"modmenu.summaryTranslation.emberflow": "Mehr FPS mit Shadern unter Vulkan, vor allem bei vielen Mobs.",
-	"modmenu.descriptionTranslation.emberflow": "Optimiert Minecraft mit Vitrail unter Vulkan: schnellere Mobs und Mob-Schatten, ohne dass sich das Bild ändert.",
+	"modmenu.descriptionTranslation.emberflow": "Mehr FPS mit Shadern unter Vulkan.\n\n\u00a76\u2726 \u00a7fSchnellere Mobs\u00a77, nur die Daten, die das Shaderpack wirklich liest\n\u00a7e\u2600 \u00a7fSchnellere Mob-Schatten\u00a77, jeder Mob wird pro Bild nur einmal vorbereitet\n\u00a7a\u26a1 \u00a7fDynamische Auflösung\u00a77, hält deine Ziel-FPS mit Vitrail\n\u00a7b\u2699 \u00a7fAlles einstellbar\u00a77 in den Videoeinstellungen\n\n\u00a78Für Minecrafts Vulkan-Renderer und Vitrail. Das Bild bleibt gleich.",
 	"emberflow.notice.not_vulkan": "Das Spiel läuft gerade mit %s, nicht mit Vulkan. Emberflow beschleunigt nur den Vulkan-Renderer, hier tut es nichts. Stell in den Grafikeinstellungen auf Vulkan um und starte Minecraft neu.",
 	"emberflow.notice.switch_question": "Emberflow kann mit %s nicht laufen, es beschleunigt nur den Vulkan-Renderer. Möchtest du auf Vulkan umstellen?
 Dabei schließt sich das Spiel, starte es danach einfach neu.",
 	"emberflow.notice.switch": "Auf Vulkan umstellen",
 	"emberflow.notice.keep": "Bei %s bleiben",
+	"emberflow.update.message": "v%s auf Modrinth und CurseForge",
 	"emberflow.page.settings": "Einstellungen",
 	"emberflow.group.performance": "Leistung",
 	"emberflow.group.adaptive_scale": "Dynamische Auflösung",
