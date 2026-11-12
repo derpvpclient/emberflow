@@ -17,6 +17,7 @@ public final class EmberflowConfig {
 	public static boolean fastEntityShadows = true;
 	public static boolean reuseEntityStates = true;
 	public static boolean fastVertexLookup = true;
+	public static boolean fastWeather = true;
 	/** The player chose to stay on a renderer that is not Vulkan, so the question is not asked again. */
 	public static boolean keepBackend = false;
 
@@ -49,6 +50,7 @@ public final class EmberflowConfig {
 		fastEntityShadows = Boolean.parseBoolean(properties.getProperty("fastEntityShadows", String.valueOf(fastEntityShadows)));
 		reuseEntityStates = Boolean.parseBoolean(properties.getProperty("reuseEntityStates", String.valueOf(reuseEntityStates)));
 		fastVertexLookup = Boolean.parseBoolean(properties.getProperty("fastVertexLookup", String.valueOf(fastVertexLookup)));
+		fastWeather = Boolean.parseBoolean(properties.getProperty("fastWeather", String.valueOf(fastWeather)));
 		keepBackend = Boolean.parseBoolean(properties.getProperty("keepBackend", String.valueOf(keepBackend)));
 
 		save();
@@ -65,6 +67,7 @@ public final class EmberflowConfig {
 		properties.setProperty("fastEntityShadows", String.valueOf(fastEntityShadows));
 		properties.setProperty("reuseEntityStates", String.valueOf(reuseEntityStates));
 		properties.setProperty("fastVertexLookup", String.valueOf(fastVertexLookup));
+		properties.setProperty("fastWeather", String.valueOf(fastWeather));
 		properties.setProperty("keepBackend", String.valueOf(keepBackend));
 
 		try (Writer writer = Files.newBufferedWriter(file)) {
