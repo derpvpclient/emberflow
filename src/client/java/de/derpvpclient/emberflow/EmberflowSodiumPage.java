@@ -14,6 +14,7 @@ public final class EmberflowSodiumPage implements ConfigEntryPoint {
 	private static final Identifier FAST_ENTITY_DATA = id("fast_entity_data");
 	private static final Identifier REUSE_ENTITY_STATES = id("reuse_entity_states");
 	private static final Identifier FAST_VERTEX_LOOKUP = id("fast_vertex_lookup");
+	private static final Identifier FAST_WEATHER = id("fast_weather");
 	private static final Identifier PAUSE_MENU_FPS = id("pause_menu_fps");
 	private static final Identifier ADAPTIVE_SCALE = id("adaptive_scale");
 	private static final Identifier ADAPTIVE_TARGET_FPS = id("adaptive_target_fps");
@@ -49,6 +50,13 @@ public final class EmberflowSodiumPage implements ConfigEntryPoint {
 						.setImpact(OptionImpact.LOW)
 						.setDefaultValue(true)
 						.setBinding(value -> EmberflowConfig.fastVertexLookup = value, () -> EmberflowConfig.fastVertexLookup)
+						.setStorageHandler(EmberflowConfig::save))
+					.addOption(builder.createBooleanOption(FAST_WEATHER)
+						.setName(Component.translatable("emberflow.option.fast_weather"))
+						.setTooltip(Component.translatable("emberflow.option.fast_weather.tooltip"))
+						.setImpact(OptionImpact.LOW)
+						.setDefaultValue(true)
+						.setBinding(value -> EmberflowConfig.fastWeather = value, () -> EmberflowConfig.fastWeather)
 						.setStorageHandler(EmberflowConfig::save))
 					.addOption(builder.createIntegerOption(PAUSE_MENU_FPS)
 						.setName(Component.translatable("emberflow.option.pause_menu_fps"))

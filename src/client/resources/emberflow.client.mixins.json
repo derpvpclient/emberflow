@@ -3,10 +3,12 @@
 	"package": "de.derpvpclient.emberflow.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
+		"ClientChunkCacheMixin",
 		"EntityRenderDispatcherMixin",
 		"FramerateLimitTrackerMixin",
 		"LevelExtractorMixin",
 		"MinecraftMixin",
+		"WeatherEffectRendererMixin",
 		"WindowMixin"
 	],
 	"injectors": {
