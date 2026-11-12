@@ -28,6 +28,9 @@ public final class Benchmark {
 	private static final boolean SHOT = Boolean.getBoolean("emberflow.benchShot");
 	private static final boolean MENU = Boolean.getBoolean("emberflow.benchMenu");
 	private static final boolean SODIUM_MENU = Boolean.getBoolean("emberflow.benchSodiumMenu");
+	/** Pictures taken while flying, evenly spread over the recording, to judge the picture in motion. */
+	private static final int FLIGHT_SHOTS = Integer.getInteger("emberflow.benchFlightShots", 0);
+	private static int flightShotsTaken;
 	private static final double SHOT_HEIGHT = 14.0;
 	private static final double SHOT_BACK = 12.0;
 	private static final float DEGREES_PER_SECOND = 18.0F;
@@ -98,6 +101,17 @@ public final class Benchmark {
 		lastFrame = now;
 		fly(minecraft, (now - recordStart) / 1.0E9);
 
+		if (flightShotsTaken < FLIGHT_SHOTS && now - recordStart >= DURATION_NS * (flightShotsTaken + 1) / (FLIGHT_SHOTS + 1)) {
+			Path file = FabricLoader.getInstance().getGameDir().resolve("emberflow").resolve("flight-" + LABEL + "-" + ++flightShotsTaken + ".png");
+			Screenshot.takeScreenshot(minecraft.gameRenderer.mainRenderTarget(), image -> {
+				try (image) {
+					image.writeToFile(file);
+				} catch (IOException e) {
+					EmberflowClient.LOGGER.error("Could not save a flight picture", e);
+				}
+			});
+		}
+
 		if (now - recordStart >= DURATION_NS) {
 			finished = true;
 			write(now - recordStart);
@@ -107,6 +121,9 @@ public final class Benchmark {
 
 	/** Holds one fixed view and saves a picture of it, so that two builds can be compared pixel by pixel. */
 	private static void shot(Minecraft minecraft, long now) {
+		if (Boolean.getBoolean("emberflow.benchF3") && !minecraft.debugEntries.isOverlayVisible()) {
+			minecraft.debugEntries.setOverlayVisible(true);
+		}
 		if (startY == 0.0) {
 			startX = minecraft.player.getX();
 			startY = minecraft.player.getY() + SHOT_HEIGHT;
