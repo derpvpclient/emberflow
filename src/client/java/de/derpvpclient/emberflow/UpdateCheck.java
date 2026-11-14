@@ -34,6 +34,11 @@ final class UpdateCheck {
 
 	/** The newer version number without the Minecraft part, like "1.0.56", or null if there is none. Blocks while asking. */
 	static String newer() {
+		// Whoever got the file from CurseForge is sent to CurseForge first, everyone else to Modrinth.
+		curseForgeFirst = fromCurseForgeApp();
+		link = curseForgeFirst ? CURSEFORGE + "/files" : MODRINTH + "/versions";
+		EmberflowClient.LOGGER.info("Update check, {} first", curseForgeFirst ? "CurseForge" : "Modrinth");
+
 		// For the game test: pretends this version is out, so the notice can be seen without asking Modrinth.
 		String pretend = System.getProperty("emberflow.updateTest");
 		if (pretend != null && !pretend.isEmpty()) {
@@ -50,9 +55,6 @@ final class UpdateCheck {
 			return null;
 		}
 
-		// Whoever installed it through the CurseForge app is sent to CurseForge first, everyone else to Modrinth.
-		curseForgeFirst = fromCurseForgeApp();
-		link = curseForgeFirst ? CURSEFORGE + "/files" : MODRINTH + "/versions";
 		if (curseForgeFirst) {
 			String found = fromCurseForge(own, game);
 			if (found != null) {
@@ -98,8 +100,14 @@ final class UpdateCheck {
 		}
 	}
 
-	/** True when the game runs from a CurseForge app instance (its folders live under "curseforge"). */
+	/**
+	 * True for the file downloaded from CurseForge (it carries emberflow-download.txt), or, for older files, when the game
+	 * runs from a CurseForge app instance (its folders live under "curseforge").
+	 */
 	static boolean fromCurseForgeApp() {
+		if (FabricLoader.getInstance().getModContainer(MOD_ID).flatMap(mod -> mod.findPath("emberflow-download.txt")).isPresent()) {
+			return true;
+		}
 		String dir = FabricLoader.getInstance().getGameDir().toAbsolutePath().toString().toLowerCase(java.util.Locale.ROOT);
 		return dir.contains("curseforge");
 	}
