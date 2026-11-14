@@ -29,12 +29,12 @@ public class EmberflowModMenu implements ModMenuApi {
 
 				@Override
 				public Component getUpdateMessage() {
-					return newer == null ? null : Component.translatable("emberflow.update.message", newer);
+					return newer == null ? null : Component.translatable(UpdateCheck.curseForgeFirst ? "emberflow.update.message.curseforge" : "emberflow.update.message", newer);
 				}
 
 				@Override
 				public String getDownloadLink() {
-					return UpdateCheck.MODRINTH + "/versions";
+					return UpdateCheck.link;
 				}
 
 				@Override
